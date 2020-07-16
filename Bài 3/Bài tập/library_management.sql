@@ -84,5 +84,13 @@ insert into address (student_id,address_name) values("C05A","Quang Nam");
 insert into address (student_id,address_name) values("C03D","Ha Noi");
 insert into address (student_id,address_name) values("C04H","Dong Nai");
 
-    
+SELECT 
+    student_name, address.address_name AS address
+FROM
+    students
+        INNER JOIN
+    address ON students.student_id = address.student_id
+HAVING students.student_name = 'Hai'
+  
+  
     
