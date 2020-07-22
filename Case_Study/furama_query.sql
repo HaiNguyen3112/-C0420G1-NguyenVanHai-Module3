@@ -146,3 +146,51 @@ UNION SELECT
 FROM
     khachhang;
 
+-- Bai 9.	Thực hiện thống kê doanh thu theo tháng, nghĩa là tương ứng với mỗi tháng trong năm 2019 thì sẽ có bao nhiêu khách hàng thực hiện đặt phòng.
+SELECT 
+    MONTH(hd.ngaylamhopdong),
+    COUNT(hd.IDKhachHang),
+    SUM(hd.TongTien)
+FROM
+    hopdong hd
+WHERE
+    YEAR(hd.ngaylamhopdong) = 2019
+GROUP BY MONTH(hd.ngaylamhopdong);
+
+-- Bai 10.	Hiển thị thông tin tương ứng với từng Hợp đồng thì đã sử dụng bao nhiêu Dịch vụ đi kèm. 
+-- Kết quả hiển thị bao gồm IDHopDong, NgayLamHopDong, NgayKetthuc, TienDatCoc, SoLuongDichVuDiKem (được tính dựa trên việc count các IDHopDongChiTiet).
+
+SELECT 
+    hd.IDHopDong,
+    hd.NgayLamHopDong,
+    hd.NgayKetThuc,
+    hd.TienDatCoc,
+    COUNT(hdct.IDHopDongChiTiet) AS SoLuongDichVuDiKem
+FROM
+    furuma.hopdong hd
+        INNER JOIN
+    furuma.hopdongchitiet hdct ON hd.IDHopDong = hdct.IDHopDong
+GROUP BY hd.IDHopDong;
+
+-- Bai 11.	Hiển thị thông tin các Dịch vụ đi kèm đã được sử dụng bởi những Khách hàng có TenLoaiKhachHang là “Diamond” và có địa chỉ là “Vinh” hoặc “Quảng Ngãi”.
+
+SELECT 
+    kh.Hoten,
+    kh.Diachi,
+    lkh.TenLoaiKhach,
+    dvdk.TenDichVuDiKem,
+    dvdk.Gia,
+    dvdk.DonVi
+FROM
+    KhachHang kh
+        JOIN
+    LoaiKhach lkh ON kh.IDLoaiKhach = lkh.IdLoaiKhach
+        JOIN
+    HopDong hd ON hd.IDKhachHang = kh.IDKhachHang
+        JOIN
+    HopDongChitiet hdct ON hdct.IDHopDong = hd.IDHopDong
+        JOIN
+    DichVuDiKem dvdk ON dvdk.IDDichVuDiKem = hdct.IDDichVuDiKem
+WHERE
+    lkh.TenLoaiKhach = 'Diamond'
+        AND kh.DiaChi IN ('Vinh' , 'Quang Ngai');

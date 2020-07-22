@@ -124,7 +124,7 @@ CREATE TABLE `hopdong` (
   CONSTRAINT `hopdong_ibfk_1` FOREIGN KEY (`IDKhachHang`) REFERENCES `khachhang` (`IDKhachHang`),
   CONSTRAINT `hopdong_ibfk_2` FOREIGN KEY (`IDDichVu`) REFERENCES `dichvu` (`IDDichVu`),
   CONSTRAINT `hopdong_ibfk_3` FOREIGN KEY (`IDNhanVien`) REFERENCES `nhanvien` (`IDNhanVien`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,7 +133,7 @@ CREATE TABLE `hopdong` (
 
 LOCK TABLES `hopdong` WRITE;
 /*!40000 ALTER TABLE `hopdong` DISABLE KEYS */;
-INSERT INTO `hopdong` VALUES (13,1,1,1,'2019-01-23','2019-01-30',NULL,NULL),(14,2,2,2,'2018-12-12','2018-12-20',NULL,NULL),(15,3,3,3,'2020-03-03','2020-03-15',NULL,NULL),(16,1,1,1,'2019-06-03','2019-06-17',NULL,NULL),(17,2,5,1,'2019-08-06','2019-08-27',NULL,NULL),(18,1,6,2,'2019-02-05','2019-03-05',NULL,NULL),(19,4,1,1,'2019-12-30','2020-01-05',NULL,NULL),(20,3,2,3,'2019-10-19','2019-10-24',NULL,NULL),(24,1,2,5,'2018-05-05','2018-05-15',NULL,NULL);
+INSERT INTO `hopdong` VALUES (13,1,1,1,'2019-01-23','2019-01-30',NULL,123123),(14,2,2,2,'2018-12-12','2018-12-20',NULL,123123),(15,3,3,3,'2020-03-03','2020-03-15',NULL,12),(16,1,1,1,'2019-06-03','2019-06-17',NULL,45),(17,2,5,1,'2019-08-06','2019-08-27',NULL,12),(18,1,6,2,'2019-02-05','2019-03-05',NULL,45),(19,4,1,1,'2019-12-30','2020-01-05',NULL,87),(20,3,2,3,'2019-10-19','2019-10-24',NULL,36),(24,1,2,5,'2018-05-05','2018-05-15',NULL,NULL),(25,1,1,1,'2019-06-03','2019-06-17',NULL,45);
 /*!40000 ALTER TABLE `hopdong` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -154,7 +154,7 @@ CREATE TABLE `hopdongchitiet` (
   KEY `IDDichVuDiKem` (`IDDichVuDiKem`),
   CONSTRAINT `hopdongchitiet_ibfk_1` FOREIGN KEY (`IDHopDong`) REFERENCES `hopdong` (`IDHopDong`),
   CONSTRAINT `hopdongchitiet_ibfk_2` FOREIGN KEY (`IDDichVuDiKem`) REFERENCES `dichvudikem` (`IDDichVuDiKem`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -163,7 +163,7 @@ CREATE TABLE `hopdongchitiet` (
 
 LOCK TABLES `hopdongchitiet` WRITE;
 /*!40000 ALTER TABLE `hopdongchitiet` DISABLE KEYS */;
-INSERT INTO `hopdongchitiet` VALUES (1,13,1,2),(2,14,2,3),(3,15,3,5),(4,16,4,4),(5,17,1,3),(6,18,3,1),(7,19,4,1),(8,20,2,1);
+INSERT INTO `hopdongchitiet` VALUES (1,13,1,2),(2,14,2,3),(3,15,3,5),(4,16,4,4),(5,17,1,3),(6,18,3,1),(7,19,4,1),(8,20,2,1),(9,20,2,1);
 /*!40000 ALTER TABLE `hopdongchitiet` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -186,7 +186,7 @@ CREATE TABLE `khachhang` (
   PRIMARY KEY (`IDKhachHang`),
   KEY `IDLoaiKhach` (`IDLoaiKhach`),
   CONSTRAINT `khachhang_ibfk_1` FOREIGN KEY (`IDLoaiKhach`) REFERENCES `loaikhach` (`IDLoaiKhach`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -195,7 +195,7 @@ CREATE TABLE `khachhang` (
 
 LOCK TABLES `khachhang` WRITE;
 /*!40000 ALTER TABLE `khachhang` DISABLE KEYS */;
-INSERT INTO `khachhang` VALUES (1,1,'Jame','1995-10-23','123465789','232323232','jame123@gamil.com','Quang Tri'),(2,3,'Ronaldo','1985-10-15','12346523','2356523232','ronaldo123@gamil.com','Da Nang'),(3,2,'Rooney','1987-10-15','123123','2356232','rooney@gamil.com','Ha Nam'),(4,2,'Rashford','2000-09-23','12312233','235623267','rashford@gamil.com','Dong Nai'),(5,4,'Hai','1994-12-31','1654623','23562267','nguyenhai@gamil.com','Da Nang'),(6,4,'asd','1950-12-12','123123','123123','sdfsdf','Quang Tri'),(7,4,'Hai','2000-12-23','2654564','6544891','asdad','Ha Nam');
+INSERT INTO `khachhang` VALUES (1,1,'Jame','1995-10-23','123465789','232323232','jame123@gamil.com','Quang Tri'),(2,3,'Ronaldo','1985-10-15','12346523','2356523232','ronaldo123@gamil.com','Da Nang'),(3,2,'Rooney','1987-10-15','123123','2356232','rooney@gamil.com','Ha Nam'),(4,2,'Rashford','2000-09-23','12312233','235623267','rashford@gamil.com','Dong Nai'),(5,4,'Hai','1994-12-31','1654623','23562267','nguyenhai@gamil.com','Da Nang'),(6,4,'asd','1950-12-12','123123','123123','sdfsdf','Quang Tri'),(7,4,'Hai','2000-12-23','2654564','6544891','asdad','Ha Nam'),(8,1,'Hai','2000-12-23','2654564','6544891','asdad','Vinh');
 /*!40000 ALTER TABLE `khachhang` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -368,4 +368,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-07-22 11:07:07
+-- Dump completed on 2020-07-22 15:23:19
