@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.20, for Win64 (x86_64)
 --
--- Host: localhost    Database: furama_management
+-- Host: localhost    Database: furuma
 -- ------------------------------------------------------
 -- Server version	8.0.20
 
@@ -61,7 +61,7 @@ CREATE TABLE `dichvu` (
   KEY `IDKieuThue` (`IDKieuThue`),
   CONSTRAINT `dichvu_ibfk_1` FOREIGN KEY (`IDLoaiDichVu`) REFERENCES `loaidichvu` (`IDLoaiDichVu`),
   CONSTRAINT `dichvu_ibfk_2` FOREIGN KEY (`IDKieuThue`) REFERENCES `kieuthue` (`IDKieuThue`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +70,7 @@ CREATE TABLE `dichvu` (
 
 LOCK TABLES `dichvu` WRITE;
 /*!40000 ALTER TABLE `dichvu` DISABLE KEYS */;
-INSERT INTO `dichvu` VALUES (1,'Villa1',150,3,5,1500000,1,1,'ok'),(2,'House1',100,2,3,1000000,2,3,'ok'),(3,'Room1',50,1,2,750000,3,2,'ok');
+INSERT INTO `dichvu` VALUES (1,'Villa1',150,3,5,1500000,1,1,'ok'),(2,'House1',100,2,3,1000000,2,3,'ok'),(3,'Room1',50,1,2,750000,3,2,'ok'),(5,'Villa2',150,4,5,1600000,4,2,'ok');
 /*!40000 ALTER TABLE `dichvu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,7 +124,7 @@ CREATE TABLE `hopdong` (
   CONSTRAINT `hopdong_ibfk_1` FOREIGN KEY (`IDKhachHang`) REFERENCES `khachhang` (`IDKhachHang`),
   CONSTRAINT `hopdong_ibfk_2` FOREIGN KEY (`IDDichVu`) REFERENCES `dichvu` (`IDDichVu`),
   CONSTRAINT `hopdong_ibfk_3` FOREIGN KEY (`IDNhanVien`) REFERENCES `nhanvien` (`IDNhanVien`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,7 +133,7 @@ CREATE TABLE `hopdong` (
 
 LOCK TABLES `hopdong` WRITE;
 /*!40000 ALTER TABLE `hopdong` DISABLE KEYS */;
-INSERT INTO `hopdong` VALUES (13,1,1,1,NULL,NULL,NULL,NULL),(14,2,2,2,NULL,NULL,NULL,NULL),(15,3,3,3,NULL,NULL,NULL,NULL),(16,1,1,1,NULL,NULL,NULL,NULL),(17,2,5,1,NULL,NULL,NULL,NULL),(18,1,6,2,NULL,NULL,NULL,NULL),(19,4,1,1,NULL,NULL,NULL,NULL),(20,3,2,3,NULL,NULL,NULL,NULL);
+INSERT INTO `hopdong` VALUES (13,1,1,1,'2019-01-23','2019-01-30',NULL,NULL),(14,2,2,2,'2018-12-12','2018-12-20',NULL,NULL),(15,3,3,3,'2020-03-03','2020-03-15',NULL,NULL),(16,1,1,1,'2019-06-03','2019-06-17',NULL,NULL),(17,2,5,1,'2019-08-06','2019-08-27',NULL,NULL),(18,1,6,2,'2019-02-05','2019-03-05',NULL,NULL),(19,4,1,1,'2019-12-30','2020-01-05',NULL,NULL),(20,3,2,3,'2019-10-19','2019-10-24',NULL,NULL),(24,1,2,5,'2018-05-05','2018-05-15',NULL,NULL);
 /*!40000 ALTER TABLE `hopdong` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -186,7 +186,7 @@ CREATE TABLE `khachhang` (
   PRIMARY KEY (`IDKhachHang`),
   KEY `IDLoaiKhach` (`IDLoaiKhach`),
   CONSTRAINT `khachhang_ibfk_1` FOREIGN KEY (`IDLoaiKhach`) REFERENCES `loaikhach` (`IDLoaiKhach`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -195,7 +195,7 @@ CREATE TABLE `khachhang` (
 
 LOCK TABLES `khachhang` WRITE;
 /*!40000 ALTER TABLE `khachhang` DISABLE KEYS */;
-INSERT INTO `khachhang` VALUES (1,1,'Jame','1995-10-23','123465789','232323232','jame123@gamil.com','Quang Tri'),(2,3,'Ronaldo','1985-10-15','12346523','2356523232','ronaldo123@gamil.com','Da Nang'),(3,2,'Rooney','1987-10-15','123123','2356232','rooney@gamil.com','Ha Nam'),(4,2,'Rashford','2000-09-23','12312233','235623267','rashford@gamil.com','Dong Nai'),(5,4,'Hai','1994-12-31','1654623','23562267','nguyenhai@gamil.com','Da Nang'),(6,4,'asd','1950-12-12','123123','123123','sdfsdf','Quang Tri');
+INSERT INTO `khachhang` VALUES (1,1,'Jame','1995-10-23','123465789','232323232','jame123@gamil.com','Quang Tri'),(2,3,'Ronaldo','1985-10-15','12346523','2356523232','ronaldo123@gamil.com','Da Nang'),(3,2,'Rooney','1987-10-15','123123','2356232','rooney@gamil.com','Ha Nam'),(4,2,'Rashford','2000-09-23','12312233','235623267','rashford@gamil.com','Dong Nai'),(5,4,'Hai','1994-12-31','1654623','23562267','nguyenhai@gamil.com','Da Nang'),(6,4,'asd','1950-12-12','123123','123123','sdfsdf','Quang Tri'),(7,4,'Hai','2000-12-23','2654564','6544891','asdad','Ha Nam');
 /*!40000 ALTER TABLE `khachhang` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -235,7 +235,7 @@ CREATE TABLE `loaidichvu` (
   `IDLoaiDichVu` int NOT NULL AUTO_INCREMENT,
   `TenDichVu` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`IDLoaiDichVu`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -244,7 +244,7 @@ CREATE TABLE `loaidichvu` (
 
 LOCK TABLES `loaidichvu` WRITE;
 /*!40000 ALTER TABLE `loaidichvu` DISABLE KEYS */;
-INSERT INTO `loaidichvu` VALUES (1,'Villa'),(2,'House'),(3,'Room');
+INSERT INTO `loaidichvu` VALUES (1,'Villa'),(2,'House'),(3,'Room'),(4,'Normal');
 /*!40000 ALTER TABLE `loaidichvu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -368,4 +368,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-07-21 12:01:30
+-- Dump completed on 2020-07-22 11:07:07

@@ -1,4 +1,4 @@
-use furama_management;
+use furuma;
 -- Bai 2:	Hiển thị thông tin của tất cả nhân viên có trong hệ thống có tên bắt đầu là một trong các ký tự “H”, “T” hoặc “K” và có tối đa 15 ký tự.
 SELECT 
     *
@@ -71,4 +71,78 @@ FROM
         LEFT JOIN
     dichvudikem dvdk ON dvdk.IDDichVuDiKem = hdct.IDDichVuDiKem
 GROUP BY kh.IDKhachHang;
+
+-- Bai 6:	Hiển thị IDDichVu, TenDichVu, DienTich, ChiPhiThue, TenLoaiDichVu của tất cả các loại Dịch vụ chưa từng được Khách hàng 
+-- thực hiện đặt từ quý 1 của năm 2019 (Quý 1 là tháng 1, 2, 3).
+
+SELECT 
+    dv.IDDichVu,
+    ldv.TenDichVu,
+    dv.DienTich,
+    dv.ChiPhiThue,
+    hd.NgayLamHopDong
+FROM
+    loaidichvu ldv
+        LEFT JOIN
+    dichvu dv ON dv.IDLoaiDichVu = ldv.IDLoaiDichVu
+        LEFT JOIN
+    hopdong hd ON dv.IDDichVu = hd.IDDichVu
+WHERE
+    YEAR(hd.NgayLamHopDong) = 2019
+        AND MONTH(hd.NgayLamHopDong) IN (1 , 2, 3);
+        
+-- Bai 7: Hiển thị thông tin IDDichVu, TenDichVu, DienTich, SoNguoiToiDa, ChiPhiThue, TenLoaiDichVu 
+-- của tất cả các loại dịch vụ đã từng được Khách hàng đặt phòng trong năm 2018 nhưng chưa từng được Khách hàng đặt phòng  trong năm 2019.
+
+SELECT 
+    dv.IDDichVu,
+    dv.TenDichVu,
+    dv.DienTich,
+    dv.SoNguoi,
+    dv.ChiPhiThue,
+    ldv.TenDichVu
+FROM
+    loaidichvu ldv
+        LEFT JOIN
+    dichvu dv ON dv.IDLoaiDichVu = ldv.IDLoaiDichVu
+        LEFT JOIN
+    hopdong hd ON dv.IDDichVu = hd.IDDichVu
+WHERE
+    YEAR(hd.NgayLamHopDong) = 2018
+        AND dv.IDDichVu NOT IN (SELECT 
+            dv.IDDichVu
+        FROM
+            loaidichvu ldv
+                LEFT JOIN
+            dichvu dv ON dv.IDLoaiDichVu = ldv.IDLoaiDichVu
+                LEFT JOIN
+            hopdong hd ON dv.IDDichVu = hd.IDDichVu
+        WHERE
+            YEAR(hd.NgayLamHopDong) = 2019);
+            
+-- Bai 8. Hiển thị thông tin HoTenKhachHang có trong hệ thống, với yêu cầu HoTenKhachHang không trùng nhau.
+-- Học viên sử dụng theo 3 cách khác nhau để thực hiện yêu cầu trên
+
+-- Cach 1: 
+SELECT DISTINCT
+    HoTen
+FROM
+    khachhang;
+    
+-- Cach 2:
+SELECT 
+    hoten
+FROM
+    khachhang
+GROUP BY HoTen;
+
+-- Cach 3:
+SELECT 
+    hoten
+FROM
+    khachhang 
+UNION SELECT 
+    hoten
+FROM
+    khachhang;
 
