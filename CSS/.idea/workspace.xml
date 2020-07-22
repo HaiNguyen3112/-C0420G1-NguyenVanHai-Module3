@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d1fef02-47fc-4ec2-a28f-fc1dcb5c7bfd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Bai 7/Thuc Hanh/layout_normal.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bai 7/Thuc Hanh/Menu_doc.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bai 7/Thuc Hanh/Menu_ngang.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bai 7/Thuc Hanh/fixed.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +63,7 @@
       <workItem from="1595295315657" duration="601000" />
       <workItem from="1595296155366" duration="2491000" />
       <workItem from="1595324243612" duration="903000" />
-      <workItem from="1595381709854" duration="865000" />
+      <workItem from="1595381709854" duration="2143000" />
     </task>
     <servers />
   </component>
