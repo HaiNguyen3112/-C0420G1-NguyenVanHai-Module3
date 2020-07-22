@@ -194,3 +194,66 @@ FROM
 WHERE
     lkh.TenLoaiKhach = 'Diamond'
         AND kh.DiaChi IN ('Vinh' , 'Quang Ngai');
+        
+-- Bai 12: Hiển thị thông tin IDHopDong, TenNhanVien, TenKhachHang, SoDienThoaiKhachHang, TenDichVu, SoLuongDichVuDikem (được tính dựa trên tổng Hợp đồng chi tiết), 
+-- TienDatCoc của tất cả các dịch vụ đã từng được khách hàng đặt vào 3 tháng cuối năm 2019 nhưng chưa từng được khách hàng đặt vào 6 tháng đầu năm 2019.
+
+SELECT 
+    hd.IDHopDong,
+    nv.HoTen AS 'Nhân viên',
+    kh.HoTen AS 'Khách hàng',
+    kh.SDT,
+    dv.TenDichVu,
+    hdct.SoLuong,
+    hd.NgayLamHopDong
+FROM
+    hopdong hd
+        INNER JOIN
+    nhanvien nv ON hd.IDNhanVien = nv.IDNhanVien
+        INNER JOIN
+    khachhang kh ON kh.IDKhachHang = hd.IDKhachHang
+        INNER JOIN
+    dichvu dv ON dv.IDDichVu = hd.IDDichVu
+        INNER JOIN
+    hopdongchitiet hdct ON hdct.IDHopDong = hd.IDHopDong
+WHERE
+    YEAR(hd.ngaylamhopdong) = 2019
+        AND MONTH(hd.ngaylamhopdong) IN (10 , 11, 12)
+        AND dv.TenDichVu NOT IN (SELECT 
+            dv.TenDichVu
+        FROM
+            hopdong hd
+                INNER JOIN
+            nhanvien nv ON hd.IDNhanVien = nv.IDNhanVien
+                INNER JOIN
+            khachhang kh ON kh.IDKhachHang = hd.IDKhachHang
+                INNER JOIN
+            dichvu dv ON dv.IDDichVu = hd.IDDichVu
+                INNER JOIN
+            hopdongchitiet hdct ON hdct.IDHopDong = hd.IDHopDong
+        WHERE
+            YEAR(hd.ngaylamhopdong) = 2019
+                AND MONTH(hd.ngaylamhopdong) IN (1 , 2, 3, 4, 5, 6));
+                
+-- Bai 13: Hiển thị thông tin các Dịch vụ đi kèm được sử dụng nhiều nhất bởi các Khách hàng đã đặt phòng. 
+-- (Lưu ý là có thể có nhiều dịch vụ có số lần sử dụng nhiều như nhau).
+
+DROP VIEW  IF EXISTS Timkiem;
+CREATE VIEW Timkiem AS
+    SELECT 
+        dvdk.TenDichVuDiKem, COUNT(hdct.SoLuong) AS 'Soluong'
+    FROM
+        dichvudikem dvdk
+            INNER JOIN
+        hopdongchitiet hdct ON dvdk.IDDichVuDiKem = hdct.IDDichVuDiKem
+    GROUP BY dvdk.TenDichVuDiKem;
+
+SELECT 
+    *
+FROM
+    Timkiem;
+
+SELECT 
+    tk.TenDichVuDiKem, MAX(tk.Soluong) AS 'Max'
+FROM
+    Timkiem tk;

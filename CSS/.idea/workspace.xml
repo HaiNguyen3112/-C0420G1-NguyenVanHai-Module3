@@ -2,29 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d1fef02-47fc-4ec2-a28f-fc1dcb5c7bfd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Bai 7/Bai Tap/layout_with_rwd.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bai 7/css/bootstrap-grid.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bai 7/css/bootstrap-grid.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bai 7/css/bootstrap-grid.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bai 7/css/bootstrap-grid.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bai 7/css/bootstrap-reboot.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bai 7/css/bootstrap-reboot.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bai 7/css/bootstrap-reboot.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bai 7/css/bootstrap-reboot.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bai 7/css/bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bai 7/css/bootstrap.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bai 7/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bai 7/css/bootstrap.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bai 7/js/bootstrap.bundle.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bai 7/js/bootstrap.bundle.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bai 7/js/bootstrap.bundle.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bai 7/js/bootstrap.bundle.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bai 7/js/bootstrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bai 7/js/bootstrap.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bai 7/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bai 7/js/bootstrap.min.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bai 7/Bai Tap/html5.html" beforeDir="false" afterPath="$PROJECT_DIR$/Bai 7/Bai Tap/html5.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bai 7/jquery-3.5.1.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bai 7/Bai Tap/layout_with_rwd.html" beforeDir="false" afterPath="$PROJECT_DIR$/Bai 7/Bai Tap/layout_with_rwd.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Case_Study/furama_query.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../Case_Study/furama_query.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,6 +68,7 @@
       <workItem from="1595296155366" duration="2491000" />
       <workItem from="1595324243612" duration="903000" />
       <workItem from="1595381709854" duration="6482000" />
+      <workItem from="1595409074472" duration="49000" />
     </task>
     <servers />
   </component>
