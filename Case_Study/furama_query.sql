@@ -238,6 +238,7 @@ WHERE
 -- Bai 13: Hiển thị thông tin các Dịch vụ đi kèm được sử dụng nhiều nhất bởi các Khách hàng đã đặt phòng. 
 -- (Lưu ý là có thể có nhiều dịch vụ có số lần sử dụng nhiều như nhau).
 
+-- Cách 1:
 DROP VIEW  IF EXISTS Timkiem;
 CREATE VIEW Timkiem AS
     SELECT 
@@ -252,8 +253,31 @@ SELECT
     *
 FROM
     Timkiem;
-
+    
+drop procedure if exists tim;
+delimiter //
+create procedure tim(out result int)
+begin
+select MAX(tk.Soluong) 
+into result
+from Timkiem tk;
+end//
+delimiter ;
 SELECT 
-    tk.TenDichVuDiKem, MAX(tk.Soluong) AS 'Max'
+    tk.TenDichVuDiKem, tk.Soluong
 FROM
-    Timkiem tk;
+    Timkiem tk
+HAVING tk.Soluong = @result;
+
+-- Cách 2 (Tận dụng View Timkiem): 
+SELECT 
+    *
+FROM
+    Timkiem tk
+WHERE
+    tk.Soluong = (SELECT 
+            MAX(tk.Soluong)
+        FROM
+            Timkiem tk);
+
+    
