@@ -110,6 +110,7 @@ public class UserDAO implements IUserDAO {
         return users;
     }
 
+
     @Override
     public boolean deleteUser(int id) throws SQLException {
         boolean rowDeleted;
