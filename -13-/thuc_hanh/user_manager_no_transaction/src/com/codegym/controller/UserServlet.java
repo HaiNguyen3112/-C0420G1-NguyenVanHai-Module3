@@ -61,6 +61,9 @@ public class UserServlet extends HttpServlet {
                 case "delete":
                     deleteUser(request, response);
                     break;
+                case "test-without-tran":
+                    testWithoutTransaction(request,response);
+                    break;
                 default:
                     listUser(request, response);
                     break;
@@ -68,6 +71,10 @@ public class UserServlet extends HttpServlet {
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
+    }
+
+    private void testWithoutTransaction(HttpServletRequest request, HttpServletResponse response){
+        userDAO.insertUpdateWithoutTransaction();
     }
 
     private void listUser(HttpServletRequest request, HttpServletResponse response)
@@ -87,8 +94,7 @@ public class UserServlet extends HttpServlet {
     private void showEditForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-//        User existingUser = userDAO.selectUser(id);
-        User existingUser = userDAO.getUserById(id);
+        User existingUser = userDAO.selectUser(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
         request.setAttribute("user", existingUser);
         dispatcher.forward(request, response);
@@ -101,8 +107,7 @@ public class UserServlet extends HttpServlet {
         String email = request.getParameter("email");
         String country = request.getParameter("country");
         User newUser = new User(name, email, country);
-//        userDAO.insertUser(newUser);
-        userDAO.insertUserStore(newUser);
+        userDAO.insertUser(newUser);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/create.jsp");
         dispatcher.forward(request, response);
     }
