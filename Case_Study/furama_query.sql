@@ -280,4 +280,28 @@ WHERE
         FROM
             Timkiem tk);
 
+
+-- Bai 14: Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy nhất. 
+-- Thông tin hiển thị bao gồm IDHopDong, TenLoaiDichVu, TenDichVuDiKem, SoLanSuDung.
+
+SELECT 
+    hd.IDHopDong,
+    ldv.TenDichVu,
+    dvdk.TenDichVuDiKem,
+    tk.Soluong AS 'So luong'
+FROM
+    LoaiDichVu ldv
+        INNER JOIN
+    DichVu dv ON ldv.IDLoaiDichVu = dv.IDLoaiDichVu
+        INNER JOIN
+    HopDong hd ON hd.IDDichVu = dv.IDDichVu
+        INNER JOIN
+    HopDongChiTiet hdct ON hd.IDHopDong = hdct.IDHopDong
+        INNER JOIN
+    DichVuDiKem dvdk ON dvdk.IDDichVuDiKem = hdct.IDDichVuDiKem
+        INNER JOIN
+    Timkiem tk ON dvdk.TenDichVuDiKem = tk.TenDichVuDiKem
+GROUP BY tk.TenDichVuDiKem
+HAVING tk.Soluong = 1;
+
     
