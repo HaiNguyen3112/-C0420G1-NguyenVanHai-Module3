@@ -35,7 +35,7 @@ public class UserServlet extends HttpServlet {
                     insertUser(request, response);
                     break;
                 case "edit":
-                    updateUser(request, response);
+                    updateUserWithStore(request, response);
                     break;
             }
         } catch (SQLException ex) {
@@ -59,10 +59,10 @@ public class UserServlet extends HttpServlet {
                     showEditForm(request, response);
                     break;
                 case "delete":
-                    deleteUser(request, response);
+                    deleteUserWithStore(request, response);
                     break;
                 default:
-                    listUser(request, response);
+                    listUserWithStore(request, response);
                     break;
             }
         } catch (SQLException ex) {
@@ -70,22 +70,22 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    private void listUser(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException, ServletException {
-        List<User> listUser = userDAO.selectAllUsers();
-        request.setAttribute("listUser", listUser);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
-        dispatcher.forward(request, response);
-    }
-//    private void listUserWithStore(HttpServletRequest request, HttpServletResponse response)
+//    private void listUser(HttpServletRequest request, HttpServletResponse response)
 //            throws SQLException, IOException, ServletException {
-//        //List<User> listUser = userDAO.selectAllUsers();
-//
-//        List<User> listUser = userDAO.selectAllUserStore();
+//        List<User> listUser = userDAO.selectAllUsers();
 //        request.setAttribute("listUser", listUser);
 //        RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
 //        dispatcher.forward(request, response);
 //    }
+    private void listUserWithStore(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        //List<User> listUser = userDAO.selectAllUsers();
+
+        List<User> listUser = userDAO.selectAllUserStore();
+        request.setAttribute("listUser", listUser);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
+        dispatcher.forward(request, response);
+    }
 
 
     private void showNewForm(HttpServletRequest request, HttpServletResponse response)
@@ -97,8 +97,8 @@ public class UserServlet extends HttpServlet {
     private void showEditForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        User existingUser = userDAO.selectUser(id);
-     //   User existingUser = userDAO.getUserById(id);
+//        User existingUser = userDAO.selectUser(id);
+        User existingUser = userDAO.getUserById(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
         request.setAttribute("user", existingUser);
         dispatcher.forward(request, response);
@@ -111,64 +111,41 @@ public class UserServlet extends HttpServlet {
         String email = request.getParameter("email");
         String country = request.getParameter("country");
         User newUser = new User(name, email, country);
-        userDAO.insertUser(newUser);
-       // userDAO.insertUserStore(newUser);
+//        userDAO.insertUser(newUser);
+        userDAO.insertUserStore(newUser);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/create.jsp");
         dispatcher.forward(request, response);
     }
 
-    private void updateUser(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException, ServletException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        String name = request.getParameter("name");
-        String email = request.getParameter("email");
-        String country = request.getParameter("country");
 
-        User book = new User(id, name, email, country);
-        userDAO.updateUser(book);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
-        dispatcher.forward(request, response);
+    private void updateUserWithStore(HttpServletRequest request, HttpServletResponse response){
+        User user = new User();
+        user.setId(Integer.parseInt(request.getParameter("id")) );
+        user.setName(request.getParameter("name"));
+        user.setEmail(request.getParameter("email"));
+        user.setCountry(request.getParameter("country"));
+
+        try {
+            userDAO.updateUserStore(user);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
+            dispatcher.forward(request,response);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-//    private void updateUserWithStore(HttpServletRequest request, HttpServletResponse response){
-//        User user = new User();
-//        user.setId(Integer.parseInt(request.getParameter("id")) );
-//        user.setName(request.getParameter("name"));
-//        user.setEmail(request.getParameter("email"));
-//        user.setCountry(request.getParameter("country"));
-//
-//        try {
-//            userDAO.updateUserStore(user);
-//            RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
-//            dispatcher.forward(request,response);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } catch (ServletException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
-
-
-    private void deleteUser(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException, ServletException {
+    private void deleteUserWithStore (HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        userDAO.deleteUser(id);
+        userDAO.deleteUserStore(id);
 
         List<User> listUser = userDAO.selectAllUsers();
         request.setAttribute("listUser", listUser);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
         dispatcher.forward(request, response);
     }
-//    private void deleteUserWithStore (HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
-//        int id = Integer.parseInt(request.getParameter("id"));
-//        userDAO.deleteUserStore(id);
-//
-//        List<User> listUser = userDAO.selectAllUsers();
-//        request.setAttribute("listUser", listUser);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
-//        dispatcher.forward(request, response);
-//    }
 }
