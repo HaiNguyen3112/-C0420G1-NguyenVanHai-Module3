@@ -17,10 +17,25 @@
     <h2>
         <a href="/users?action=create">Add New User</a>
     </h2>
+    <form action="search">
+<%--        <h1>Search</h1>--%>
+        <table border="1">
+            <tr>
+                <td>
+                    <input type="text" name="country"
+                    />
+                </td>
+                <td ><input type="submit" value="Search"></td>
+            </tr>
+        </table>
+
+<%--    <a>Search</a>--%>
+    </form>
 </center>
 <div align="center">
     <table border="1" cellpadding="5">
         <caption><h2>List of Users</h2></caption>
+
         <tr>
             <th>ID</th>
             <th>Name</th>

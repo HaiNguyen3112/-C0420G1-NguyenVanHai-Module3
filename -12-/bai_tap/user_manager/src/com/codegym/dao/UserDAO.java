@@ -20,6 +20,7 @@ public class UserDAO implements IUserDAO {
 
     private static final String SELECT_USER_BY_ID = "select id,name,email,country from users where id =?";
     private static final String SELECT_ALL_USERS = "select * from users";
+    private static final String SELECT_USER_BY_COUNTRY = "select * from users where country =?;";
     private static final String DELETE_USERS_SQL = "delete from users where id = ?;";
     private static final String UPDATE_USERS_SQL = "update users set name = ?,email= ?, country =? where id = ?;";
 
@@ -110,6 +111,30 @@ public class UserDAO implements IUserDAO {
         return users;
     }
 
+    @Override
+    public List<User> findByCountry(String country) {
+
+        List<User> users = new ArrayList<>();
+        try(Connection connection = getConnection();){
+            PreparedStatement statement = connection.prepareStatement(SELECT_USER_BY_COUNTRY);
+            statement.setString(1, country);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()){
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+                String country1 = rs.getString("country");
+                users.add(new User(id, name, email, country1));
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+
 
     @Override
     public boolean deleteUser(int id) throws SQLException {
@@ -124,7 +149,8 @@ public class UserDAO implements IUserDAO {
     @Override
     public boolean updateUser(User user) throws SQLException {
         boolean rowUpdated;
-        try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(UPDATE_USERS_SQL);) {
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(UPDATE_USERS_SQL);) {
             statement.setString(1, user.getName());
             statement.setString(2, user.getEmail());
             statement.setString(3, user.getCountry());

@@ -12,6 +12,7 @@ public interface IUserDAO {
 
     public List<User> selectAllUsers();
 
+    public List<User> findByCountry(String country);
 
     public boolean deleteUser(int id) throws SQLException;
 

@@ -2,6 +2,7 @@ package com.codegym.controller;
 
 import com.codegym.dao.UserDAO;
 import com.codegym.model.User;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -61,11 +62,15 @@ public class UserServlet extends HttpServlet {
                 case "delete":
                     deleteUser(request, response);
                     break;
+                case "search":
+                    findUser(request,response);
+                    break;
                 default:
                     listUser(request, response);
                     break;
             }
-        } catch (SQLException ex) {
+        }   catch (SQLException ex) {
+            System.out.println("Something");
             throw new ServletException(ex);
         }
     }
@@ -125,6 +130,16 @@ public class UserServlet extends HttpServlet {
 
         List<User> listUser = userDAO.selectAllUsers();
         request.setAttribute("listUser", listUser);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void findUser(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException,ServletException {
+        String country = request.getParameter("country");
+        List<User> userList =  userDAO.findByCountry(country);
+
+        request.setAttribute("listUser", userList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
         dispatcher.forward(request, response);
     }
