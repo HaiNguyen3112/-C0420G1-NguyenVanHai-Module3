@@ -14,4 +14,6 @@ public interface ICustomerDAO {
     public void insertCustomer(Customer customer);
 
     public Customer selectCustomer(int id);
+
+
 }

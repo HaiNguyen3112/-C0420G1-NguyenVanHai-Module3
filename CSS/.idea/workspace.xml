@@ -2,16 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d1fef02-47fc-4ec2-a28f-fc1dcb5c7bfd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bai 7/Thuc Hanh/test.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bai 8/Bai tap/form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bai 9/ad.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bai 9/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/CSS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CSS.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/src/dao/EmployeeDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/src/dao/ServiceDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/web/user/createEmployee.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/web/user/createService.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/web/user/editEmployee.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/web/user/listEmployee.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bai 7/Bai Tap/layout_with_rwd.html" beforeDir="false" afterPath="$PROJECT_DIR$/Bai 7/Bai Tap/layout_with_rwd.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Case_Study/furama_query.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../Case_Study/furama_query.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bai 9/ad.html" beforeDir="false" afterPath="$PROJECT_DIR$/Bai 9/ad.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/out/artifacts/module3_accountName_WBE_war_exploded/WEB-INF/classes/Controller/ControlServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/out/artifacts/module3_accountName_WBE_war_exploded/WEB-INF/classes/Controller/ControlServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/out/artifacts/module3_accountName_WBE_war_exploded/WEB-INF/classes/dao/CustomerDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/out/artifacts/module3_accountName_WBE_war_exploded/WEB-INF/classes/dao/CustomerDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/out/artifacts/module3_accountName_WBE_war_exploded/user/createCustomer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/out/artifacts/module3_accountName_WBE_war_exploded/user/createCustomer.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/out/artifacts/module3_accountName_WBE_war_exploded/user/editCustomer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/out/artifacts/module3_accountName_WBE_war_exploded/user/editCustomer.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/out/artifacts/module3_accountName_WBE_war_exploded/user/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/out/artifacts/module3_accountName_WBE_war_exploded/user/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/out/artifacts/module3_accountName_WBE_war_exploded/user/listCustomer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/out/artifacts/module3_accountName_WBE_war_exploded/user/listCustomer.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/out/production/module3_accountName_WBE/Controller/ControlServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/out/production/module3_accountName_WBE/Controller/ControlServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/out/production/module3_accountName_WBE/dao/CustomerDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/out/production/module3_accountName_WBE/dao/CustomerDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/src/Controller/ControlServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/src/Controller/ControlServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/src/dao/CustomerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/src/dao/CustomerDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/src/dao/ICustomerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/src/dao/ICustomerDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/web/user/createCustomer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/web/user/createCustomer.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/web/user/editCustomer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/web/user/editCustomer.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/web/user/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/web/user/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/web/user/listCustomer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../Case_Study/module3_accountName_WBE/web/user/listCustomer.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +97,7 @@
       <workItem from="1595473291699" duration="5553000" />
       <workItem from="1596419103675" duration="390000" />
       <workItem from="1596960853977" duration="1000" />
+      <workItem from="1597308027735" duration="706000" />
     </task>
     <servers />
   </component>

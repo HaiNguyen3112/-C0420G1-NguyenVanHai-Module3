@@ -1,18 +1,16 @@
 <%--
   Created by IntelliJ IDEA.
   User: Minh Nguyen
-  Date: 12/8/2020
-  Time: 1:36 PM
+  Date: 13/8/2020
+  Time: 9:06 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html>
 <head>
-    <title>List Customer</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Furama Resort</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -226,54 +224,71 @@
         </ul>
     </div>
 </nav>
-<h3>
-    <a href="/furama?action=createcustomer" style="color: dimgray">Add New Customer</a>
-</h3>
 
-<div>
-    <h2>Danh sách Khách Hàng!</h2>
-    <table border="1", cellpadding="5">
-        <tr>
-            <form>
-                <td>
-                    <input name="titleFind" placeholder="Tiêu đề">
-                </td>
-                <td>
-                    <input type="submit" name="submit" value="Tìm">
-                </td>
-            </form>
-        </tr>
-    </table>
-    <table border="1", cellpadding="5">
-        <tr>
-            <th>STT</th>
-            <th>Họ và Tên</th>
-            <th>Hạng khách</th>
-            <th>Ngày sinh</th>
-            <th>Giới tính</th>
-            <th>CMND</th>
-            <th>Số điện thoại</th>
-            <th>Email</th>
-            <th>Địa chỉ</th>
-        </tr>
-        <c:forEach var="customer" items="${listCustomer}">
+<div><a href="/furama?action=employee">Back</a>
+    <form method="post">
+        <h3>
+            Thêm mới Nhân Viên!!!
+        </h3>
+        <table>
             <tr>
-                <td>  <c:out value="${customer.id}"/> </td>
-                <td>  <c:out value="${customer.name}"/> </td>
-                <td>  <c:out value="${customer.typeId}"/> </td>
-                <td>  <c:out value="${customer.birthday}"/> </td>
-                <td>  <c:out value="${customer.gender}"/> </td>
-                <td>  <c:out value="${customer.idCard}"/> </td>
-                <td>  <c:out value="${customer.phone}"/> </td>
-                <td>  <c:out value="${customer.email}"/> </td>
-                <td>  <c:out value="${customer.address}"/> </td>
-                <td>
-                    <a href="/furama?action=editcustomer&id=${customer.id}">Edit</a>
-                    <a href="/furama?action=deletecustomer&id=${customer.id}">Delete</a>
+                <td>STT</td>
+                <td><input type="text" name="id"></td>
+            </tr>
+            <tr>
+                <td>Họ tên: </td>
+                <td><input type="text" name="name"></td>
+            </tr>
+            <tr>
+                <td>Ngày sinh (YYYY-MM-DD): </td>
+                <td><input type="text" name="birthday"></td>
+            </tr>
+            <tr>
+                <td>CMND: </td>
+                <td><input type="text" name="idCard"></td>
+            </tr>
+            <tr>
+                <td>Lương: </td>
+                <td><input type="text" name="salary"></td>
+            </tr>
+            <tr>
+                <td>Số điện thoại: </td>
+                <td><input type="text" name="phone"></td>
+            </tr>
+            <tr>
+                <td>Email: </td>
+                <td><input type="text" name="email"></td>
+            </tr>
+            <tr>
+                <td>Địa chỉ: </td>
+                <td><input type="text" name="address"></td>
+            </tr>
+            <tr>
+                <td>Vị trí(1-6): </td>
+                <td><input type="text" name="position"></td>
+            </tr>
+            <tr>
+                <td>Trình độ(1-4): </td>
+                <td><input type="text" name="educationDegreeId"></td>
+            </tr>
+            <tr>
+                <td>Bộ phận(1-4): </td>
+                <td><input type="text" name="divisionId"></td>
+            </tr>
+            <tr>
+                <td>Username: </td>
+                <td><input type="text" name="username"></td>
+            </tr>
+            <tr>
+                <td align="center" colspan="2">
+                    <a href="/furama?action=createemployee"><input type="button" value="Xoá"></a>
+                    <input type="submit" name="submit" value="Lưu">
                 </td>
             </tr>
-        </c:forEach>
-    </table>
+        </table>
+    </form>
+
 </div>
+
 </body>
 </html>

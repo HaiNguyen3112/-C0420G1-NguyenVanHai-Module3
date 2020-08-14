@@ -211,9 +211,9 @@
     <div id="navbarCollapse" class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
             <li class="active"><a href="/furama"><i class="fa fa-home"></i><span>Home</span></a></li>
-            <li><a href="#"><i class="fa fa-gears"></i><span>Employee</span></a></li>
+            <li><a href="/furama?action=employee"><i class="fa fa-gears"></i><span>Employee</span></a></li>
             <li><a href="/furama?action=customer"><i class="fa fa-users"></i><span>Customer</span></a></li>
-            <li><a href="#"><i class="fa fa-pie-chart"></i><span>Service</span></a></li>
+            <li><a href="/furama?action=createservice"><i class="fa fa-pie-chart"></i><span>Service</span></a></li>
             <li><a href="#"><i class="fa fa-briefcase"></i><span>Contract</span></a></li>
             <li>
                 <form class="navbar-form form-inline">
@@ -227,7 +227,7 @@
     </div>
 </nav>
 <h3>
-    <a href="/furama?action=create" style="color: dimgray">Add New Customer</a>
+    <a href="/furama?action=createcustomer" style="color: dimgray">Add New Customer</a>
 </h3>
 
 <div>
@@ -259,8 +259,8 @@
         <c:forEach var="customer" items="${listCustomer}">
             <tr>
                 <td>  <c:out value="${customer.id}"/> </td>
-                <td>  <c:out value="${customer.typeId}"/> </td>
                 <td>  <c:out value="${customer.name}"/> </td>
+                <td>  <c:out value="${customer.typeId}"/> </td>
                 <td>  <c:out value="${customer.birthday}"/> </td>
                 <td>  <c:out value="${customer.gender}"/> </td>
                 <td>  <c:out value="${customer.idCard}"/> </td>

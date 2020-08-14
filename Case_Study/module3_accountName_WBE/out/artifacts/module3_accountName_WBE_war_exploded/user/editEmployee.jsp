@@ -1,18 +1,19 @@
 <%--
   Created by IntelliJ IDEA.
   User: Minh Nguyen
-  Date: 12/8/2020
-  Time: 1:36 PM
+  Date: 13/8/2020
+  Time: 12:04 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>List Customer</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Edit Employee</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -213,7 +214,7 @@
             <li class="active"><a href="/furama"><i class="fa fa-home"></i><span>Home</span></a></li>
             <li><a href="/furama?action=employee"><i class="fa fa-gears"></i><span>Employee</span></a></li>
             <li><a href="/furama?action=customer"><i class="fa fa-users"></i><span>Customer</span></a></li>
-            <li><a href="/furama?action=createservice"><i class="fa fa-pie-chart"></i><span>Service</span></a></li>
+            <li><a href="#"><i class="fa fa-pie-chart"></i><span>Service</span></a></li>
             <li><a href="#"><i class="fa fa-briefcase"></i><span>Contract</span></a></li>
             <li>
                 <form class="navbar-form form-inline">
@@ -226,54 +227,122 @@
         </ul>
     </div>
 </nav>
-<h3>
-    <a href="/furama?action=createcustomer" style="color: dimgray">Add New Customer</a>
-</h3>
 
 <div>
-    <h2>Danh sách Khách Hàng!</h2>
-    <table border="1", cellpadding="5">
-        <tr>
-            <form>
-                <td>
-                    <input name="titleFind" placeholder="Tiêu đề">
-                </td>
-                <td>
-                    <input type="submit" name="submit" value="Tìm">
-                </td>
-            </form>
-        </tr>
-    </table>
-    <table border="1", cellpadding="5">
-        <tr>
-            <th>STT</th>
-            <th>Họ và Tên</th>
-            <th>Hạng khách</th>
-            <th>Ngày sinh</th>
-            <th>Giới tính</th>
-            <th>CMND</th>
-            <th>Số điện thoại</th>
-            <th>Email</th>
-            <th>Địa chỉ</th>
-        </tr>
-        <c:forEach var="customer" items="${listCustomer}">
-            <tr>
-                <td>  <c:out value="${customer.id}"/> </td>
-                <td>  <c:out value="${customer.name}"/> </td>
-                <td>  <c:out value="${customer.typeId}"/> </td>
-                <td>  <c:out value="${customer.birthday}"/> </td>
-                <td>  <c:out value="${customer.gender}"/> </td>
-                <td>  <c:out value="${customer.idCard}"/> </td>
-                <td>  <c:out value="${customer.phone}"/> </td>
-                <td>  <c:out value="${customer.email}"/> </td>
-                <td>  <c:out value="${customer.address}"/> </td>
-                <td>
-                    <a href="/furama?action=editcustomer&id=${customer.id}">Edit</a>
-                    <a href="/furama?action=deletecustomer&id=${customer.id}">Delete</a>
-                </td>
-            </tr>
-        </c:forEach>
-    </table>
+    <center>
+        <h1>Employee Management</h1>
+        <h2>
+            <a href="/furama?action=employee">List All Employee</a>
+        </h2>
+    </center>
+    <div align="center">
+        <form method="post">
+            <table border="1" cellpadding="5">
+                <caption>
+                    <h2>
+                        Edit Employee
+                    </h2>
+                </caption>
+                <c:if test="${employee != null}">
+                    <input type="hidden" name="id" value="<c:out value='${employee.id}' />"/>
+                </c:if>
+                <tr>
+                    <th>Họ và tên:</th>
+                    <td>
+                        <input type="text" name="name" size="45"
+                               value="<c:out value='${employee.name}' />"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Ngày sinh:</th>
+                    <td>
+                        <input type="text" name="birthday" size="15"
+                               value="<c:out value='${employee.birthday}' />"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <th>CMND:</th>
+                    <td>
+                        <input type="text" name="idCard" size="15"
+                               value="<c:out value='${employee.idCard}' />"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Lương:</th>
+                    <td>
+                        <input type="text" name="salary" size="15"
+                               value="<c:out value='${employee.salary}' />"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Số điện thoại:</th>
+                    <td>
+                        <input type="text" name="phone" size="15"
+                               value="<c:out value='${employee.phone}' />"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Email:</th>
+                    <td>
+                        <input type="text" name="email" size="15"
+                               value="<c:out value='${employee.email}' />"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Địa chỉ:</th>
+                    <td>
+                        <input type="text" name="address" size="15"
+                               value="<c:out value='${employee.address}' />"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Vị trí:</th>
+                    <td>
+                        <input type="text" name="position" size="15"
+                               value="<c:out value='${employee.position}' />"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Trình độ:</th>
+                    <td>
+                        <input type="text" name="educationDegreeId" size="15"
+                               value="<c:out value='${employee.educationDegreeId}' />"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Bộ phận:</th>
+                    <td>
+                        <input type="text" name="divisionId" size="15"
+                               value="<c:out value='${employee.divisionId}' />"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Username:</th>
+                    <td>
+                        <input type="text" name="username" size="15"
+                               value="<c:out value='${employee.username}' />"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" value="Save"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
 </div>
+
 </body>
 </html>

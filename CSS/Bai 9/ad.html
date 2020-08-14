@@ -6,5 +6,55 @@
 </head>
 <body>
 
+<select id="selectType" onchange="displayInput()" name="serviceTypeId">
+    <option value="1">Villa</option>
+    <option value="2">House</option>
+    <option value="3">Room</option>
+</select>
+<table>
+    <tr id="standard_Room">
+        <td>Tiêu chuẩn phòng: </td>
+        <td><input type="text" name="standardRoom" ></td>
+    </tr>
+    <tr id="description">
+        <td>Tiện nghi khác: </td>
+        <td><input type="text" name="description" ></td>
+    </tr>
+
+    <tr id="poolArea">
+        <td>Diện tích hồ bơi: </td>
+        <td><input type="text" name="poolArea" ></td>
+    </tr>
+
+    <tr id="numberOfFloors">
+        <td>Số tầng: </td>
+        <td><input type="text" name="numberOfFloors" ></td>
+    </tr>
+</table>
+
+<script>
+
+    function displayInput() {
+        let select = document.getElementById("selectType");
+        alert(select.value);
+        let standard = document.getElementById("standard_Room");
+        let description = document.getElementById("description");
+        let pool = document.getElementById("poolArea");
+        let number = document.getElementById("numberOfFloors");
+
+        if (select.value === "2"){
+            standard.style.display = "block";
+            description.style.display = "block";
+            pool.style.display = "none";
+            number.style.display = "block";
+        } else if (select.value() === "3"){
+            standard.style.display = "none";
+            description.style.display = "none";
+            pool.style.display = "none";
+            number.style.display = "none";
+        }
+
+    }
+</script>
 </body>
 </html>

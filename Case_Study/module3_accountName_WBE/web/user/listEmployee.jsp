@@ -1,15 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
   User: Minh Nguyen
-  Date: 12/8/2020
-  Time: 1:36 PM
+  Date: 13/8/2020
+  Time: 10:32 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>List Customer</title>
+    <title>List Employee</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -227,7 +227,7 @@
     </div>
 </nav>
 <h3>
-    <a href="/furama?action=createcustomer" style="color: dimgray">Add New Customer</a>
+    <a href="/furama?action=createemployee" style="color: dimgray">Add New Employee</a>
 </h3>
 
 <div>
@@ -248,28 +248,34 @@
         <tr>
             <th>STT</th>
             <th>Họ và Tên</th>
-            <th>Hạng khách</th>
             <th>Ngày sinh</th>
-            <th>Giới tính</th>
             <th>CMND</th>
+            <th>Lương</th>
             <th>Số điện thoại</th>
             <th>Email</th>
             <th>Địa chỉ</th>
+            <th>Vị trí</th>
+            <th>Trình độ</th>
+            <th>Bộ phận</th>
+            <th>Username</th>
         </tr>
-        <c:forEach var="customer" items="${listCustomer}">
+        <c:forEach var="employee" items="${listEmployee}">
             <tr>
-                <td>  <c:out value="${customer.id}"/> </td>
-                <td>  <c:out value="${customer.name}"/> </td>
-                <td>  <c:out value="${customer.typeId}"/> </td>
-                <td>  <c:out value="${customer.birthday}"/> </td>
-                <td>  <c:out value="${customer.gender}"/> </td>
-                <td>  <c:out value="${customer.idCard}"/> </td>
-                <td>  <c:out value="${customer.phone}"/> </td>
-                <td>  <c:out value="${customer.email}"/> </td>
-                <td>  <c:out value="${customer.address}"/> </td>
+                <td>  <c:out value="${employee.id}"/> </td>
+                <td>  <c:out value="${employee.name}"/> </td>
+                <td>  <c:out value="${employee.birthday}"/> </td>
+                <td>  <c:out value="${employee.idCard}"/> </td>
+                <td>  <c:out value="${employee.salary}"/> </td>
+                <td>  <c:out value="${employee.phone}"/> </td>
+                <td>  <c:out value="${employee.email}"/> </td>
+                <td>  <c:out value="${employee.address}"/> </td>
+                <td>  <c:out value="${employee.position}"/> </td>
+                <td>  <c:out value="${employee.educationDegreeId}"/> </td>
+                <td>  <c:out value="${employee.divisionId}"/> </td>
+                <td>  <c:out value="${employee.username}"/> </td>
                 <td>
-                    <a href="/furama?action=editcustomer&id=${customer.id}">Edit</a>
-                    <a href="/furama?action=deletecustomer&id=${customer.id}">Delete</a>
+                    <a href="/furama?action=editemployee&id=${employee.id}">Edit</a>
+                    <a href="/furama?action=deleteemployee&id=${employee.id}">Delete</a>
                 </td>
             </tr>
         </c:forEach>

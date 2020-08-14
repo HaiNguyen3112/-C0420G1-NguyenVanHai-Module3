@@ -1,8 +1,10 @@
 package dao;
 
 import model.Customer;
+import model.Employee;
 import sun.applet.AppletResourceLoader;
 
+import javax.servlet.RequestDispatcher;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,13 +15,15 @@ public class CustomerDAO implements ICustomerDAO {
     private String jdbcUsername = "root";
     private String jdbcPassword = "heobong142";
 
-    private static final String INSERT_CUSTOMER_SQL = "INSERT INTO customer (customer_type_id,customer_name,customer_birthday,customer_gender,customer_id_card,customer_phone,customer_email,customer_address)" +
-            " VALUES (?,?,?,?,?,?,?,?);";
-    private static final String DELETE_CUSTOMER_SQL = " DELETE FROM customer WHERE id =?;";
+    private static final String INSERT_CUSTOMER_SQL = "INSERT INTO customer (customer_id,customer_type_id,customer_name,customer_birthday,customer_gender,customer_id_card,customer_phone,customer_email,customer_address)" +
+            " VALUES (?,?,?,?,?,?,?,?,?);";
+    private static final String DELETE_CUSTOMER_SQL = " DELETE FROM customer WHERE customer_id =?;";
     private static final String UPDATE_CUSTOMER_SQL = "UPDATE customer SET customer_type_id=?,customer_name=?,customer_birthday=?,customer_gender=?," +
-            "customer_id_card=?,customer_phone=?,customer_email=?,customer_address=? WHERE id =?;";
+            "customer_id_card=?,customer_phone=?,customer_email=?,customer_address=? WHERE customer_id =?;";
     private static final String SELECT_ALL_CUSTOMER_SQL ="SELECT * FROM customer;";
-    private static final String SELECT_CUSTOMER_BY_ID_SQL = "SELECT * customer WHERE id =?;";
+    private static final String SELECT_CUSTOMER_BY_ID_SQL = "SELECT * FROM customer WHERE customer_id =?;";
+
+
     public CustomerDAO(){
 
     }
@@ -79,7 +83,7 @@ public class CustomerDAO implements ICustomerDAO {
                 preparedStatement.setInt(1,customer.getTypeId());
                 preparedStatement.setString(2,customer.getName());
                 preparedStatement.setString(3,customer.getBirthday());
-                preparedStatement.setInt(4,customer.getGender());;
+                preparedStatement.setInt(4,customer.getGender());
                 preparedStatement.setString(5,customer.getIdCard());
                 preparedStatement.setString(6,customer.getPhone());
                 preparedStatement.setString(7,customer.getEmail());
@@ -107,6 +111,27 @@ public class CustomerDAO implements ICustomerDAO {
 
     @Override
     public void insertCustomer(Customer customer) {
+        System.out.println(INSERT_CUSTOMER_SQL);
+
+        try {
+            try(Connection connection = getConnection();){
+                PreparedStatement preparedStatement = connection.prepareStatement(INSERT_CUSTOMER_SQL);
+                preparedStatement.setInt(1,customer.getId());
+                preparedStatement.setInt(2,customer.getTypeId());
+                preparedStatement.setString(3,customer.getName());
+                preparedStatement.setString(4,customer.getBirthday());
+                preparedStatement.setInt(5,customer.getGender());
+                preparedStatement.setString(6,customer.getIdCard());
+                preparedStatement.setString(7,customer.getPhone());
+                preparedStatement.setString(8,customer.getEmail());
+                preparedStatement.setString(9,customer.getAddress());
+
+                System.out.println(preparedStatement);
+                preparedStatement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -139,4 +164,6 @@ public class CustomerDAO implements ICustomerDAO {
         }
         return customer;
     }
+
+
 }

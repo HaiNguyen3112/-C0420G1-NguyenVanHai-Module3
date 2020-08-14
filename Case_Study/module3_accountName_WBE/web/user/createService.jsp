@@ -1,18 +1,16 @@
 <%--
   Created by IntelliJ IDEA.
   User: Minh Nguyen
-  Date: 12/8/2020
-  Time: 1:36 PM
+  Date: 13/8/2020
+  Time: 2:26 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html>
 <head>
-    <title>List Customer</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Create New Service</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -226,54 +224,105 @@
         </ul>
     </div>
 </nav>
-<h3>
-    <a href="/furama?action=createcustomer" style="color: dimgray">Add New Customer</a>
-</h3>
 
-<div>
-    <h2>Danh sách Khách Hàng!</h2>
-    <table border="1", cellpadding="5">
-        <tr>
-            <form>
-                <td>
-                    <input name="titleFind" placeholder="Tiêu đề">
-                </td>
-                <td>
-                    <input type="submit" name="submit" value="Tìm">
-                </td>
-            </form>
-        </tr>
-    </table>
-    <table border="1", cellpadding="5">
-        <tr>
-            <th>STT</th>
-            <th>Họ và Tên</th>
-            <th>Hạng khách</th>
-            <th>Ngày sinh</th>
-            <th>Giới tính</th>
-            <th>CMND</th>
-            <th>Số điện thoại</th>
-            <th>Email</th>
-            <th>Địa chỉ</th>
-        </tr>
-        <c:forEach var="customer" items="${listCustomer}">
+<div><a href="/furama">Back</a>
+    <form method="post">
+        <h3>
+            Thêm mới Dịch Vụ!!!
+        </h3>
+        <table>
             <tr>
-                <td>  <c:out value="${customer.id}"/> </td>
-                <td>  <c:out value="${customer.name}"/> </td>
-                <td>  <c:out value="${customer.typeId}"/> </td>
-                <td>  <c:out value="${customer.birthday}"/> </td>
-                <td>  <c:out value="${customer.gender}"/> </td>
-                <td>  <c:out value="${customer.idCard}"/> </td>
-                <td>  <c:out value="${customer.phone}"/> </td>
-                <td>  <c:out value="${customer.email}"/> </td>
-                <td>  <c:out value="${customer.address}"/> </td>
+                <td>Loại dịch vụ: </td>
                 <td>
-                    <a href="/furama?action=editcustomer&id=${customer.id}">Edit</a>
-                    <a href="/furama?action=deletecustomer&id=${customer.id}">Delete</a>
+                    <select id="selectType" onchange="displayInput()" name="serviceTypeId">
+                        <option value="1">Villa</option>
+                        <option value="2">House</option>
+                        <option value="3">Room</option>
+                    </select>
                 </td>
             </tr>
-        </c:forEach>
-    </table>
+            <tr>
+                <td>STT: </td>
+                <td><input type="text" name="id"></td>
+            </tr>
+            <tr>
+                <td>Tên dịch vụ: </td>
+                <td><input type="text" name ="name"></td>
+            </tr>
+            <tr>
+                <td>Diện tích: </td>
+                <td><input type="text" name="serviceArea"></td>
+            </tr>
+        
+            <tr>
+                <td>Giá: </td>
+                <td><input type="text" name="cost"></td>
+            </tr>
+            <tr>
+                <td>Số người tối đa: </td>
+                <td><input type="text" name="maxPeople"></td>
+            </tr>
+            <tr>
+                <td>Kiểu thuê: </td>
+                <td><input type="text" name="rentTypeId"></td>
+            </tr>
+            <tr id="standard_Room">
+                <td>Tiêu chuẩn phòng: </td>
+                <td><input type="text" name="standardRoom" ></td>
+            </tr>
+            <tr id="description">
+                <td>Tiện nghi khác: </td>
+                <td><input type="text" name="description" ></td>
+            </tr>
+
+            <tr id="poolArea">
+                <td>Diện tích hồ bơi: </td>
+                <td><input type="text" name="poolArea" ></td>
+            </tr>
+
+            <tr id="numberOfFloors">
+                <td>Số tầng: </td>
+                <td><input type="text" name="numberOfFloors" ></td>
+            </tr>
+
+            <tr>
+                <td align="center" colspan="2">
+                    <a href="/furama?action=createservice"><input type="button" value="Xoá"></a>
+                    <input type="submit" name="submit" value="Lưu">
+                </td>
+            </tr>
+        </table>
+    </form>
+
 </div>
+<script>
+    
+    function displayInput() {
+        let select = document.getElementById("selectType");
+        let standard = document.getElementById("standard_Room");
+        let description = document.getElementById("description");
+        let pool = document.getElementById("poolArea");
+        let number = document.getElementById("numberOfFloors");
+
+        if (select.value === "2"){
+            standard.style.display = "table-row";
+            description.style.display = "table-row";
+            pool.style.display = "none";
+            number.style.display = "table-row";
+            pool.value = 0;
+        } else if (select.value === "3"){
+            standard.style.display = "none";
+            description.style.display = "none";
+            pool.style.display = "none";
+            number.style.display = "none";
+        } else{
+            standard.style.display = "table-row";
+            description.style.display = "table-row";
+            pool.style.display = "table-row";
+            number.style.display = "table-row";
+        }
+
+    }
+</script>
 </body>
 </html>
