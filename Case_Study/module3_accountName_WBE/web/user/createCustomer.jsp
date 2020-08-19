@@ -213,7 +213,7 @@
             <li><a href="/furama?action=employee"><i class="fa fa-gears"></i><span>Employee</span></a></li>
             <li><a href="/furama?action=customer"><i class="fa fa-users"></i><span>Customer</span></a></li>
             <li><a href="/furama?action=createservice"><i class="fa fa-pie-chart"></i><span>Service</span></a></li>
-            <li><a href="#"><i class="fa fa-briefcase"></i><span>Contract</span></a></li>
+            <li><a href="/furama?action=createcontract"><i class="fa fa-briefcase"></i><span>Contract</span></a></li>
             <li>
                 <form class="navbar-form form-inline">
                     <div class="input-group search-box">
@@ -245,7 +245,7 @@
                 <td><input type="text" name="name"></td>
             </tr>
             <tr>
-                <td>Ngày sinh (YYYY-MM-DD): </td>
+                <td>Ngày sinh (dd-MM-yyyy): </td>
                 <td><input type="text" name="birthday"></td>
             </tr>
             <tr>

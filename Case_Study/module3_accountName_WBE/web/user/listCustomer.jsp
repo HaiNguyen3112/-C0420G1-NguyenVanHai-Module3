@@ -214,7 +214,7 @@
             <li><a href="/furama?action=employee"><i class="fa fa-gears"></i><span>Employee</span></a></li>
             <li><a href="/furama?action=customer"><i class="fa fa-users"></i><span>Customer</span></a></li>
             <li><a href="/furama?action=createservice"><i class="fa fa-pie-chart"></i><span>Service</span></a></li>
-            <li><a href="#"><i class="fa fa-briefcase"></i><span>Contract</span></a></li>
+            <li><a href="/furama?action=createcontract"><i class="fa fa-briefcase"></i><span>Contract</span></a></li>
             <li>
                 <form class="navbar-form form-inline">
                     <div class="input-group search-box">
@@ -234,16 +234,19 @@
     <h2>Danh sách Khách Hàng!</h2>
     <table border="1", cellpadding="5">
         <tr>
-            <form>
+            <form action="/furama?action=findcustomer" method="post">
                 <td>
-                    <input name="titleFind" placeholder="Tiêu đề">
+                    <input name="nameFind" placeholder="Name here">
                 </td>
                 <td>
-                    <input type="submit" name="submit" value="Tìm">
+                    <input type="submit" name="submit" value="Search">
                 </td>
             </form>
         </tr>
     </table>
+    <form action="/furama?action=sort" method="post">
+        <input type="submit" value="Sắp xếp theo tên">
+    </form>
     <table border="1", cellpadding="5">
         <tr>
             <th>STT</th>

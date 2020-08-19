@@ -15,5 +15,6 @@ public interface ICustomerDAO {
 
     public Customer selectCustomer(int id);
 
+    public List<Customer> findCustomerByName(String name);
 
 }

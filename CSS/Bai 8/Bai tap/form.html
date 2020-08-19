@@ -5,37 +5,108 @@
     <title>Title</title>
 </head>
 <body>
-<!--<form class="form-inline" role="form" >-->
-<!--    <div class="form-group">-->
-<!--        <label class="sr-only" for="name">Name</label>-->
-<!--        <input type="text" class="form-control" id="name" placeholder="Enter Name">-->
-<!--    </div>-->
-<!--    <div class="form-group">-->
-<!--        <label class="sr-only" for="inputfile">File Input</label>-->
-<!--        <input type="file" id="inputfile">-->
-
-<!--    </div>-->
-<!--    <div class="custom-checkbox">-->
-<!--        <label>-->
-<!--            <input type="checkbox">Check me out</label>-->
-<!--    </div>-->
-<!--    <button type="submit" class="btn btn-secondary">Submit</button>-->
-<!--</form>-->
-<form role="form">
-    <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" placeholder="Enter Name">
-    </div>
-    <div class="form-group">
-        <label for="inputfile">File input</label>
-        <input type="file" id="inputfile">
-        <p class="form-text">Example block-level help text here.</p>
-    </div>
-    <div class="checkbox">
-        <label>
-            <input type="checkbox">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-secondary">Submit</button>
+<form id="add" onsubmit="return validate()">
+    <h3>
+        Thêm mới Khách hàng!!!
+    </h3>
+    <table>
+        <tr>
+            <td>STT</td>
+            <td><input type="text" name="id" id = "id"></td>
+        </tr>
+        <tr>
+            <td>Hạng khách: </td>
+            <td><input type="text" name="typeId" id="typeId"></td>
+        </tr>
+        <tr>
+            <td>Họ tên: </td>
+            <td><input type="text" name="name" id=" name"></td>
+        </tr>
+        <tr>
+            <td>Ngày sinh (dd-MM-yyyy): </td>
+            <td><input type="text" name="birthday" id="birthday"></td>
+        </tr>
+        <tr>
+            <td>Giới tính: </td>
+            <td><input type="text" name="gender" id="gender"></td>
+        </tr>
+        <tr>
+            <td>CMND: </td>
+            <td><input type="text" name="idCard" id="idCard"></td>
+        </tr>
+        <tr>
+            <td>Số điện thoại: </td>
+            <td><input type="text" name="phone" id="phone"></td>
+        </tr>
+        <tr>
+            <td>Email: </td>
+            <td><input type="text" name="email" id="email"></td>
+        </tr>
+        <tr>
+            <td>Địa chỉ: </td>
+            <td><input type="text" name="address" id="address"></td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2">
+                <a href="/furama?action=create"><input type="button" value="Xoá"></a>
+                <input type="submit" name="submit" value="Lưu">
+            </td>
+        </tr>
+    </table>
 </form>
+<script>
+
+    function validate() {
+        let result = "";
+        let id = document.getElementById("id").value;
+        let email= document.getElementById("email").value;
+        let patternEmail = /^[\S]+@[a-z]{3,}.[a-z]{3,}([.][a-z]+)?$/;
+        let patternId = /^KH-[0-9]{4}$/;
+
+        if (!patternEmail.test(email)){
+            result +="Sai dinh dang email\n";
+        }
+        if (!patternId.test(id)){
+            result +="Sai dinh dang Id\n"
+        }
+
+
+        if (patternId.test(id) && patternEmail.test(email)) {
+            alert("True")
+            return true;
+        } else alert(result);
+        return false;
+    }
+</script>
+
+<!--<form method="post" action="" onsubmit="return validateForm()">-->
+<!--    Username: <input type="text" name="username" id="username" value=""/> <br/><br/>-->
+<!--    Password: <input type="password" name="password" id="password" value=""/> <br/><br/>-->
+<!--    <input type="submit" name="login" value="Login"/>-->
+<!--</form>-->
+
+<!--<script>-->
+<!--    function validateForm()-->
+<!--    {-->
+<!--        // Bước 1: Lấy giá trị của username và password-->
+<!--        var username = document.getElementById('username').value;-->
+<!--        var password = document.getElementById('password').value;-->
+
+<!--        // Bước 2: Kiểm tra dữ liệu hợp lệ hay không-->
+<!--        if (username == ''){-->
+<!--            alert('Bạn chưa nhập tên đăng nhập');-->
+<!--        }-->
+<!--        else if (password == '')-->
+<!--        {-->
+<!--            alert('Bạn chưa nhập mật khẩu');-->
+<!--        }-->
+<!--        else{-->
+<!--            alert('Dữ liệu hợp lệ, ta có thể chấp nhận submit form');-->
+<!--            return true;-->
+<!--        }-->
+
+<!--        return false;-->
+<!--    }-->
+<!--</script>-->
 </body>
 </html>

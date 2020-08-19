@@ -6,6 +6,9 @@ import sun.applet.AppletResourceLoader;
 
 import javax.servlet.RequestDispatcher;
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +25,7 @@ public class CustomerDAO implements ICustomerDAO {
             "customer_id_card=?,customer_phone=?,customer_email=?,customer_address=? WHERE customer_id =?;";
     private static final String SELECT_ALL_CUSTOMER_SQL ="SELECT * FROM customer;";
     private static final String SELECT_CUSTOMER_BY_ID_SQL = "SELECT * FROM customer WHERE customer_id =?;";
-
+    private static final String SELECT_CUSTOMER_BY_NAME_SQL = "SELECT * FROM customer WHERE customer_name =?;";
 
     public CustomerDAO(){
 
@@ -57,7 +60,12 @@ public class CustomerDAO implements ICustomerDAO {
                     int id = rs.getInt(1);
                     int typeId = rs.getInt(2);
                     String name = rs.getString(3);
+
                     String birthday = rs.getString(4);
+                    DateFormat from = new SimpleDateFormat("yyyy-MM-dd");
+                    DateFormat to = new SimpleDateFormat("dd-MM-yyyy");
+                    birthday = to.format(from.parse(birthday));
+
                     int gender = rs.getInt(5);
                     String idCard = rs.getString(6);
                     String phone = rs.getString(7);
@@ -67,7 +75,7 @@ public class CustomerDAO implements ICustomerDAO {
                     customerList.add(new Customer(id,typeId,name,birthday,gender,idCard,phone,email,address));
                 }
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ParseException e) {
             e.printStackTrace();
         }
         return customerList;
@@ -163,6 +171,36 @@ public class CustomerDAO implements ICustomerDAO {
             e.printStackTrace();
         }
         return customer;
+    }
+
+    @Override
+    public List<Customer> findCustomerByName(String name) {
+        List<Customer> customerList = new ArrayList<>();
+
+        try(Connection connection = getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_CUSTOMER_BY_NAME_SQL);
+            preparedStatement.setString(1,name);
+            System.out.println(preparedStatement);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()){
+                int id = rs.getInt(1);
+                int typeId= rs.getInt(2);
+                String birthday = rs.getString(4);
+                int gender = rs.getInt(5);
+                String idCard = rs.getString(6);
+                String phone = rs.getString(7);
+                String email = rs.getString(8);
+                String address = rs.getString(9);
+
+                customerList.add (new Customer(id,typeId,name,birthday,gender,idCard,phone,email,address)) ;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return customerList;
     }
 
 

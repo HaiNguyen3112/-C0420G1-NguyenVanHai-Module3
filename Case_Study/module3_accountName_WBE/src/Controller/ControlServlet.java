@@ -1,11 +1,7 @@
 package Controller;
 
-import dao.CustomerDAO;
-import dao.EmployeeDAO;
-import dao.ServiceDAO;
-import model.Customer;
-import model.Employee;
-import model.Service;
+import dao.*;
+import model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @WebServlet(name = "ControlServlet", urlPatterns = "/furama")
@@ -21,10 +22,14 @@ public class ControlServlet extends HttpServlet {
     private CustomerDAO customerDAO;
     private EmployeeDAO employeeDAO;
     private ServiceDAO serviceDAO;
+    private ContractDetailDAO contractDetailDAO;
+    private ContractDAO contractDAO;
     public void init(){
         customerDAO = new CustomerDAO();
         employeeDAO = new EmployeeDAO();
         serviceDAO = new ServiceDAO();
+        contractDetailDAO = new ContractDetailDAO();
+        contractDAO = new ContractDAO();
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -41,11 +46,23 @@ public class ControlServlet extends HttpServlet {
             case "createservice":
                 addNewService(request,response);
                 break;
+            case "createcontract":
+                addNewContract(request,response);
+                break;
+            case "createcontractdetail":
+                addNewContractDetail(request,response);
+                break;
             case "editcustomer":
                 editCustomer(request,response);
                 break;
             case "editemployee":
                 editEmployee(request,response);
+                break;
+            case "findcustomer":
+                showCustomerByName(request,response);
+                break;
+            case "sort":
+                sortCustomer(request,response);
                 break;
             default:
                 showHome(request,response);
@@ -70,6 +87,12 @@ public class ControlServlet extends HttpServlet {
             case "createservice":
                 showAddNewServiceForm(request,response);
                 break;
+            case "createcontract":
+                showAddNewContractForm(request,response);
+                break;
+            case "createcontractdetail":
+                showAddNewContractDetailForm(request,response);
+                break;
             case "customer":
                 listCustomer(request,response);
                 break;
@@ -88,6 +111,7 @@ public class ControlServlet extends HttpServlet {
             case "deleteemployee":
                 deleteEmployee(request,response);
                 break;
+
             default:
                 showHome(request,response);
                 break;
@@ -107,6 +131,14 @@ public class ControlServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/createService.jsp");
         dispatcher.forward(request,response);
     }
+    private void showAddNewContractForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("user/createContract.jsp");
+        dispatcher.forward(request,response);
+    }
+    private void showAddNewContractDetailForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("user/createContractDetail.jsp");
+        dispatcher.forward(request,response);
+    }
 
 
     private void showHome(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -121,6 +153,25 @@ public class ControlServlet extends HttpServlet {
         dispatcher.forward(request,response);
     }
 
+    public void sortCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Customer> customerList = customerDAO.selectAllCustomer();
+
+        Collections.sort(customerList);
+
+        request.setAttribute("listCustomer",customerList);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("user/listCustomer.jsp");
+        dispatcher.forward(request,response);
+    }
+
+    private void showCustomerByName(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name = request.getParameter("nameFind");
+        List<Customer> customerList = customerDAO.findCustomerByName(name);
+
+        request.setAttribute("listCustomer",customerList);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("user/listCustomer.jsp");
+        dispatcher.forward(request,response);
+    }
+
     public  void listEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Employee> employeeList = employeeDAO.selectAllEmployee();
 
@@ -128,6 +179,7 @@ public class ControlServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/listEmployee.jsp");
         dispatcher.forward(request,response);
     }
+
 
     public void deleteCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id= Integer.parseInt(request.getParameter("id"));
@@ -154,7 +206,17 @@ public class ControlServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         int typeId = Integer.parseInt(request.getParameter("typeId"));
         String name = request.getParameter("name");
-        String birthday = request.getParameter("birthday");
+        String birthday = "";
+        try{
+             birthday = request.getParameter("birthday");
+            DateFormat from = new SimpleDateFormat("dd-MM-yyyy");
+            DateFormat to = new SimpleDateFormat("yyyy-MM-dd");
+            birthday = to.format(from.parse(birthday));
+        } catch (ParseException e){
+            e.printStackTrace();
+        }
+
+
         int gender = Integer.parseInt(request.getParameter("gender"));
         String idCard = request.getParameter("idCard");
         String phone = request.getParameter("phone");
@@ -186,6 +248,37 @@ public class ControlServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/createEmployee.jsp");
         dispatcher.forward(request,response);
 
+    }
+
+    public void addNewContract(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String startDate = request.getParameter("startDate");
+        String endDate = request.getParameter("endDate");
+        double deposit = Double.parseDouble(request.getParameter("deposit"));
+        double totalMoney = Double.parseDouble(request.getParameter("totalMoney"));
+        int employeeId = Integer.parseInt(request.getParameter("employeeId"));
+        int customerId = Integer.parseInt(request.getParameter("customerId"));
+        int serviceId = Integer.parseInt(request.getParameter("serviceId"));
+
+        Contract contract = new Contract(id,startDate,endDate,deposit,totalMoney,employeeId,customerId,serviceId);
+        contractDAO.insertContract(contract);
+
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("user/createContract.jsp");
+        dispatcher.forward(request,response);
+    }
+
+    public void addNewContractDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int idContractDetail = Integer.parseInt(request.getParameter("idDetail"));
+        int idContract = Integer.parseInt(request.getParameter("id"));
+        int attachServiceId = Integer.parseInt(request.getParameter("attachServiceId"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+
+        ContractDetail contractDetail = new ContractDetail(idContractDetail,idContract,attachServiceId,quantity);
+        contractDetailDAO.insertContractDetail(contractDetail);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("user/createContractDetail.jsp");
+        dispatcher.forward(request,response);
     }
 
     public void addNewService(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
